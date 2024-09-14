@@ -1,5 +1,7 @@
 package OOP.Access;
 
+
+
 public class Main {
     public static void main(String[] args) {
         A obj = new A(10, "Kunal");
@@ -12,5 +14,6 @@ public class Main {
 
         obj.getNum();
         int n = obj.num;
+
     }
 }
