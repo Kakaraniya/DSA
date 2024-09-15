@@ -123,4 +123,16 @@ public class LL {
         System.out.println("size = " +size);
         return;
     }
+    public void insertRect(int index, int val){
+        head = insertRect(index, val, head);
+    }
+    private Node insertRect(int index, int val, Node node){
+        if(index == 0){
+            Node temp = new Node(val, node);
+            size ++;
+            return temp;
+        }
+        node.next = insertRect(index-1, val, node.next);
+        return node;
+    }
 }
