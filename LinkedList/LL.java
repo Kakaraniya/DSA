@@ -135,4 +135,117 @@ public class LL {
         node.next = insertRect(index-1, val, node.next);
         return node;
     }
+    public void bubbleSort() {
+        bubbleSort(size - 1, 0);
+    }
+    private void bubbleSort(int row, int col){
+        if (row == 0) {
+            return;
+        }
+        if(col<row){
+            Node first = getNode(col);
+            Node second = getNode(col+1);
+            if(first.val > second.val){
+                if(first == head){
+                    first.next = second.next;
+                    second.next = first;
+                    head = second;
+                } else if (second == tail) {
+                    Node prev = getNode(col - 1);
+                    prev.next = second;
+                    second.next = first;
+                    first.next = null;
+                    tail = first;
+                }else{
+                    Node prev = getNode(col - 1);
+                    prev.next = second;
+                    first.next = second.next;
+                    second.next = first;
+
+                }
+            }
+            bubbleSort(row,col+1);
+        }
+        else{
+            bubbleSort(row-1, 0);
+        }
+    }
+
+    private void reverse(Node node){
+        if(node == tail){
+            head = tail;
+            return;
+        }
+        reverse(node.next);
+        tail.next = node;
+        tail = node;
+        tail.next = null;
+    }
+    // https://leetcode.com/problems/remove-duplicates-from-sorted-list
+    public void duplicates() {
+        Node node = head;
+
+        while (node.next != null) {
+            if (node.val == node.next.val) {
+                node.next = node.next.next;
+                size--;
+            } else {
+                node = node.next;
+            }
+        }
+        tail = node;
+        tail.next = null;
+    }
+
+    // in place reversal of linked list
+    // google, microsoft, apple, amazon: https://leetcode.com/problems/reverse-linked-list/
+    public void reverse() {
+        if (size < 2) {
+            return;
+        }
+
+        Node prev = null;
+        Node present = head;
+        Node next = present.next;
+
+        while (present != null) {
+            present.next = prev;
+            prev = present;
+            present = next;
+            if (next != null) {
+                next = next.next;
+            }
+        }
+        head = prev;
+    }
+
+    // https://leetcode.com/problems/merge-two-sorted-lists/submissions/
+    public static LL merge(LL first, LL second) {
+        Node f = first.head;
+        Node s = second.head;
+
+        LL ans = new LL();
+
+        while (f != null && s != null) {
+            if (f.val < s.val) {
+                ans.insertLast(f.val);
+                f = f.next;
+            } else {
+                ans.insertLast(s.val);
+                s = s.next;
+            }
+        }
+
+        while (f != null) {
+            ans.insertLast(f.val);
+            f = f.next;
+        }
+
+        while (s != null) {
+            ans.insertLast(s.val);
+            s = s.next;
+        }
+
+        return ans;
+    }
 }

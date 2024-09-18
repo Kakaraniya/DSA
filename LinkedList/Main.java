@@ -4,15 +4,19 @@ package LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-       LL list = new LL();
+//       LL list = new LL();
+InterviewQuestions list = new InterviewQuestions();
+       list.insertFirst(10);
+       list.insertFirst(9);
+       list.insertFirst(8);
+       list.insertFirst(7);
+        list.insertFirst(8);
+        list.insertFirst(9);
+        list.insertFirst(10);
 
-       list.insertFirst(20);
-       list.insertFirst(30);
-       list.insertLast(10);
-       list.insertLast(1);
-        list.display();
-        list.insertRect(3,1000);
-       list.display();
+        list.checking(list.head);
+        //System.out.println(list.isPalindrome(list.head));
+
 //       list.delete(2);
 //       list.display();
 //        list.insertFirst(100);
